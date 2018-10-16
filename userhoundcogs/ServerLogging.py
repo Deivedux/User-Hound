@@ -119,9 +119,7 @@ class ServerLogging:
 
 	@commands.command()
 	async def serverlog(self, ctx):
-		if ctx.author.id == 415570038175825930 or ctx.author.id == 145878866429345792:
-			pass
-		elif not ctx.guild or not ctx.author.guild_permissions.manage_guild:
+		if not ctx.guild or not ctx.author.guild_permissions.manage_guild:
 			return
 
 		perms = ctx.guild.me.permissions_in(ctx.channel)
