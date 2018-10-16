@@ -2,7 +2,7 @@ import discord
 import sqlite3
 import asyncio
 import aiohttp
-import
+import json
 from discord.ext import commands
 
 conn = sqlite3.connect('HoundBot.db')
