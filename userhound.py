@@ -1,6 +1,7 @@
 import discord
 import sqlite3
 import asyncio
+import json
 from discord.ext import commands
 
 conn = sqlite3.connect('HoundBot.db')
@@ -69,5 +70,4 @@ async def on_message(message):
 	await bot.process_commands(message)
 
 
-bot.run('NDYxOTE0MTcwMDI4MzI2OTEz.DncpOw.5stcWLTndWJzWp010xmdC-j_dYw') # PUBLIC
-#bot.run('NDY1OTMyNzU5MjAzMDUzNTg5.DieGYQ._wFX2p91sXldRqJfDLuv-dofd9w') # TESTING
+bot.run(token)
