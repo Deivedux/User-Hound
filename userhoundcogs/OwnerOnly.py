@@ -45,6 +45,12 @@ class OwnerOnly:
 			blacklist_ids.remove(int(id_input))
 			await ctx.send(content = 'Unblacklisted ID `' + str(id_input) + '`.')
 
+	@commands.command()
+	async def shutdown(self, ctx):
+		if ctx.author.id in owners:
+			await ctx.send(content = '<:check:314349398811475968> **Shutting down.**')
+			await self.bot.logout()
+
 
 def setup(bot):
 	bot.add_cog(OwnerOnly(bot))
