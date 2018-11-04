@@ -25,6 +25,7 @@ c.execute("CREATE TABLE IF NOT EXISTS MemberPersistanceGuilds (Guild TEXT unique
 c.execute("CREATE TABLE IF NOT EXISTS MemberPersistanceUsers (User TEXT, Guild TEXT, Roles TEXT, Nick TEXT)")
 c.execute("CREATE TABLE IF NOT EXISTS Prefixes (Guild TEXT unique, Prefix TEXT)")
 c.execute("CREATE TABLE IF NOT EXISTS Filters (Guild TEXT, Word TEXT, Filter TEXT)")
+c.execute("CREATE TABLE IF NOT EXISTS ChangelogAnnounceChannels (Guild TEXT unique, Channel TEXT)")
 
 from userhoundcogs.Utility import prefixes
 

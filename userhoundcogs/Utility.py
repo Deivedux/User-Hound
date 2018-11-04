@@ -268,6 +268,18 @@ class Utility:
 			await asyncio.sleep(600)
 			announce_limit.remove(ctx.guild.id)
 
+	@commands.command()
+	async def setchangelogs(self, ctx):
+		if ctx.guild and ctx.author.guild_permissions.manage_guild:
+			try:
+				c.execute("INSERT INTO ChangelogAnnounceChannels (Guild, Channel) VALUES ('" + str(ctx.guild.id) + "', '" + str(ctx.channel.id) + "')")
+				conn.commit()
+				await ctx.send(content = '<:check:314349398811475968> **Set channel for changelog announcements.**')
+			except sqlite3.IntegrityError:
+				c.execute("DELETE FROM ChangelogAnnounceChannels WHERE Guild = " + str(ctx.guild.id))
+				conn.commit()
+				await ctx.send(content = '<:check:314349398811475968> **Disabled changelog notifications.**')
+
 
 def setup(bot):
 	bot.add_cog(Utility(bot))

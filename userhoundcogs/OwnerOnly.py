@@ -24,6 +24,18 @@ class OwnerOnly:
 		self.bot = bot
 
 	@commands.command()
+	async def submitlog(self, ctx, *, args):
+		if ctx.author.id in owners and isinstance(ctx.channel, discord.DMChannel):
+			channels = c.execute("SELECT Channel FROM ChangelogAnnounceChannels").fetchall()
+			for i in channels:
+				channel = self.bot.get_channel(int(i[0]))
+				if channel:
+					try:
+						await channel.send(content = '```diff\n' + '\n'.join(args.split('|')) + '\n```')
+					except discord.Forbidden:
+						continue
+
+	@commands.command()
 	async def blacklistadd(self, ctx, id_input):
 		if ctx.author.id in owners:
 			try:

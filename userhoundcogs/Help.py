@@ -319,6 +319,12 @@ class Help:
 			embed.add_field(name = 'Requires Permissions', value = 'Administrator', inline = False)
 			embed.add_field(name = 'Example', value = '`filters`')
 			await ctx.send(embed = embed)
+		elif command.lower() == 'setchangelogs':
+			embed = discord.Embed()
+			embed.add_field(name = '`setchangelogs`', value = 'Set a channel where User Hound will be posting changelog announcements.')
+			embed.add_field(name = 'Requires Permissions', value = 'Manage Server', inline = False)
+			embed.add_field(name = 'Example', value = '`setchangelogs`')
+			await ctx.send(embed = embed)
 		else:
 			await ctx.send(content = '<:xmark:314349398824058880> **That command does not exist.**')
 
@@ -357,6 +363,7 @@ class Help:
 		if module.lower() == 'utility':
 			embed = discord.Embed(title = 'User Lookup', color = 0x2ECC71)
 			embed.add_field(name = 'prefix', value = 'See the currently set prefix, or set a new one for the current server.', inline = False)
+			embed.add_field(name = 'setchangelogs', value = 'Set a channel where User Hound will be posting changelog announcements.', inline = False)
 			embed.add_field(name = 'memberpersistance', value = 'Enables or disables Members Persistance in the server.', inline = False)
 			embed.add_field(name = 'userinfo', value = 'Gets information about a specific server member.', inline = False)
 			embed.add_field(name = 'serverinfo', value = 'Gets information about the current server.', inline = False)
