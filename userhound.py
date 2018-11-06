@@ -26,6 +26,7 @@ c.execute("CREATE TABLE IF NOT EXISTS MemberPersistanceUsers (User TEXT, Guild T
 c.execute("CREATE TABLE IF NOT EXISTS Prefixes (Guild TEXT unique, Prefix TEXT)")
 c.execute("CREATE TABLE IF NOT EXISTS Filters (Guild TEXT, Word TEXT, Filter TEXT)")
 c.execute("CREATE TABLE IF NOT EXISTS ChangelogAnnounceChannels (Guild TEXT unique, Channel TEXT)")
+c.execute("CREATE TABLE IF NOT EXISTS DelCmdMsg (Guild TEXT unique)")
 
 from userhoundcogs.Utility import prefixes
 
@@ -60,6 +61,7 @@ async def on_ready():
 		await asyncio.sleep(120)
 
 from userhoundcogs.OwnerOnly import blacklist_ids
+from userhoundcogs.Utility import delcmds
 
 @bot.event
 async def on_message(message):
@@ -67,6 +69,8 @@ async def on_message(message):
 		await message.guild.leave()
 	elif message.author.bot or message.author.id in blacklist_ids:
 		return
+	elif message.guild.id in delcmds:
+		await message.delete()
 
 	await bot.process_commands(message)
 

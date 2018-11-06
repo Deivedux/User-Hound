@@ -325,6 +325,12 @@ class Help:
 			embed.add_field(name = 'Requires Permissions', value = 'Manage Server', inline = False)
 			embed.add_field(name = 'Example', value = '`setchangelogs`')
 			await ctx.send(embed = embed)
+		elif command.lower() == 'delcmdmsg':
+			embed = discord.Embed()
+			embed.add_field(name = '`delcmdmsg`', value = 'Automatically delete successful command invocation messages.')
+			embed.add_field(name = 'Requires Permissions', value = 'Manage Server', inline = False)
+			embed.add_field(name = 'Example', value = '`delcmdmsg`')
+			await ctx.send(embed = embed)
 		else:
 			await ctx.send(content = '<:xmark:314349398824058880> **That command does not exist.**')
 
@@ -363,6 +369,7 @@ class Help:
 		if module.lower() == 'utility':
 			embed = discord.Embed(title = 'User Lookup', color = 0x2ECC71)
 			embed.add_field(name = 'prefix', value = 'See the currently set prefix, or set a new one for the current server.', inline = False)
+			embed.add_field(name = 'delcmdmsg', value = 'Automatically delete successful command invocation messages.', inline = False)
 			embed.add_field(name = 'setchangelogs', value = 'Set a channel where User Hound will be posting changelog announcements.', inline = False)
 			embed.add_field(name = 'memberpersistance', value = 'Enables or disables Members Persistance in the server.', inline = False)
 			embed.add_field(name = 'userinfo', value = 'Gets information about a specific server member.', inline = False)

@@ -16,6 +16,13 @@ for i in prefixes_raw:
 	prefixes[int(i[0])] = str(i[1])
 del prefixes_raw
 
+delcmds_raw = c.execute("SELECT Guild FROM DelCmdMsg").fetchall()
+global delcmds
+delcmds = []
+for i in delcmds_raw:
+	delcmds.append(int(i[0]))
+del delcmds_raw
+
 class Utility:
 	def __init__(self, bot):
 		self.bot = bot
@@ -51,6 +58,20 @@ class Utility:
 			prefixes[ctx.guild.id] = prefix
 
 			await ctx.send(content = '<:check:314349398811475968> **Prefix changed to `' + prefix + '`.**')
+
+	@commands.command()
+	async def delcmdmsg(self, ctx):
+		if ctx.guild and ctx.author.guild_permissions.manage_guild:
+			try:
+				c.execute("INSERT INTO DelCmdMsg (Guild) VALUES ('" + str(ctx.guild.id) + "')")
+				conn.commit()
+				delcmds.append(ctx.guild.id)
+				await ctx.send(content = '<:check:314349398811475968> **Enabled automatic deletion of command messages.**')
+			except sqlite3.IntegrityError:
+				c.execute("DELETE FROM DelCmdMsg WHERE Guild = " + str(ctx.guild.id))
+				conn.commit()
+				delcmds.remove(ctx.guild.id)
+				await ctx.send(content = '<:check:314349398811475968> **Disabled automatic deletion of command messages.**')
 
 	@commands.command(aliases = ['uinfo'])
 	async def userinfo(self, ctx, *, member: discord.Member = None):
