@@ -69,7 +69,7 @@ async def on_message(message):
 		await message.guild.leave()
 	elif message.author.bot or message.author.id in blacklist_ids:
 		return
-	elif message.guild.id in delcmds:
+	elif message.guild and message.guild.id in delcmds:
 		await message.delete()
 
 	await bot.process_commands(message)
