@@ -18,7 +18,7 @@ class Verification:
 		self.bot = bot
 
 	async def on_message(self, message):
-		if message.guild.id in verify_channels.keys():
+		if message.guild and message.guild.id in verify_channels.keys():
 			if message.channel.id == verify_channels[message.guild.id][0]:
 				perms = message.author.permissions_in(message.channel)
 				if not perms.manage_messages:
