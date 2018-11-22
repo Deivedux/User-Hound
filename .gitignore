@@ -1,3 +1,2 @@
-*.db
-config.json
-userhoundcogs/__pycache__
+config
+cogs/__pycache__
