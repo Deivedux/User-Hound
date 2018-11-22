@@ -17,6 +17,7 @@ with open('config/settings.json') as json_data:
 
 default_prefix = response_json['default_prefix']
 token = response_json['token']
+del response_json
 
 async def get_prefix(bot, message):
 	if message.guild:
