@@ -39,10 +39,15 @@ for cog in startup_extensions:
 		print(e)
 
 @bot.event
+async def on_connect():
+	print('Logged in as: ' + bot.user.name)
+	print('Caching guild and users...')
+	print()
+
+@bot.event
 async def on_ready():
-	print('Logged in as')
-	print(bot.user.name)
-	print('-----------')
+	print('Caching completed. Bot ready for use.')
+	print('----------')
 
 @bot.event
 async def on_message(message):
