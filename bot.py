@@ -48,6 +48,8 @@ async def on_ready():
 async def on_message(message):
 	if message.bot:
 		return
+	elif message.content == bot.user.mention:
+		return await message.channel.send(content = '**My prefix here is** `' + get_prefix + '`')
 
 	await bot.process_commands(message)
 
