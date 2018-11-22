@@ -24,9 +24,9 @@ async def get_prefix(bot, message):
 		try:
 			return commands.when_mentioned_or(prefix[message.guild.id])(bot, message)
 		except KeyError:
-			return commands.when_mentioned_or(default_prefix)
+			return commands.when_mentioned_or(default_prefix)(bot, message)
 	else:
-		return commands.when_mentioned_or(default_prefix)
+		return commands.when_mentioned_or(default_prefix)(bot, message)
 
 bot = commands.Bot(command_prefix = get_prefix, case_insensitive = True)
 bot.remove_command('help')
