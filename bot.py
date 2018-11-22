@@ -28,7 +28,7 @@ async def get_prefix(bot, message):
 	else:
 		return commands.when_mentioned_or(default_prefix)(bot, message)
 
-bot = commands.Bot(command_prefix = get_prefix, case_insensitive = True)
+bot = commands.Bot(command_prefix = get_prefix, case_insensitive = True, fetch_offline_members = True)
 bot.remove_command('help')
 
 startup_extensions = ['cogs.Main']
