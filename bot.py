@@ -5,14 +5,14 @@ import sqlite3
 import os
 from discord.ext import commands
 
-conn = sqlite3.connect('config/HoundBot.db', detect_types = sqlite3.PARSE_DECLTYPES)
+conn = sqlite3.connect('HoundBot.db', detect_types = sqlite3.PARSE_DECLTYPES)
 c = conn.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS Users (User INTEGER unique)")
 c.execute("CREATE TABLE IF NOT EXISTS GuildConfig (Guild INTEGER unique, Prefix TEXT)")
 
-from cogs.Main import prefix
+from cogs.Utility import prefix
 
-with open('config/settings.json') as json_data:
+with open('settings.json') as json_data:
 	response_json = json.load(json_data)
 
 default_prefix = response_json['default_prefix']
@@ -31,7 +31,7 @@ async def get_prefix(bot, message):
 bot = commands.Bot(command_prefix = get_prefix, case_insensitive = True, fetch_offline_members = True)
 bot.remove_command('help')
 
-startup_extensions = ['cogs.Main']
+startup_extensions = [file for file in os.listdir('cogs') if file.endswith('.py')]
 for cog in startup_extensions:
 	try:
 		bot.load_extension(cog)
@@ -41,13 +41,21 @@ for cog in startup_extensions:
 @bot.event
 async def on_connect():
 	print('Logged in as: ' + bot.user.name)
-	print('Caching guild and users...')
+	print('Caching guilds and users...')
 	print()
 
 @bot.event
 async def on_ready():
-	print('Caching completed. Bot ready for use.')
-	print('----------')
+	print('Caching completed.')
+	print('Ready to serve ' + str(bot.users) + ' users in ' + str(bot.guilds) + ' servers.')
+
+@bot.event
+async def on_command(ctx):
+	print()
+	print('Command: ' + ctx.message.content)
+	print('Server: ' + ctx.guild.name + ' (' + str(ctx.guild.id) + ')')
+	print('Channel: ' + ctx.channel.name + ' (' + str(ctx.channel.id) + ')')
+	print('User: ' + str(ctx.author) + ' (' + str(ctx.author.id) + ')')
 
 @bot.event
 async def on_message(message):

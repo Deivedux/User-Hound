@@ -3,7 +3,7 @@ import sqlite3
 import asyncio
 from discord.ext import commands
 
-conn = sqlite3.connect('config/HoundBot.db')
+conn = sqlite3.connect('HoundBot.db')
 c = conn.cursor()
 
 prefix_raw = c.execute("SELECT * FROM GuildConfig").fetchall()
