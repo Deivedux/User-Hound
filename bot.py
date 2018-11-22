@@ -31,7 +31,7 @@ async def get_prefix(bot, message):
 bot = commands.Bot(command_prefix = get_prefix, case_insensitive = True, fetch_offline_members = True)
 bot.remove_command('help')
 
-startup_extensions = [file for file in os.listdir('cogs') if file.endswith('.py')]
+startup_extensions = ['cogs.Help', 'cogs.Utility']
 for cog in startup_extensions:
 	try:
 		bot.load_extension(cog)
@@ -47,7 +47,7 @@ async def on_connect():
 @bot.event
 async def on_ready():
 	print('Caching completed.')
-	print('Ready to serve ' + str(bot.users) + ' users in ' + str(bot.guilds) + ' servers.')
+	print('Ready to serve ' + str(len(bot.users)) + ' users in ' + str(len(bot.guilds)) + ' servers.')
 
 @bot.event
 async def on_command(ctx):
@@ -59,7 +59,7 @@ async def on_command(ctx):
 
 @bot.event
 async def on_message(message):
-	if message.bot:
+	if message.author.bot:
 		return
 	elif message.content == bot.user.mention:
 		return await message.channel.send(content = '**My prefix here is** `' + get_prefix + '`')

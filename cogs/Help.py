@@ -31,7 +31,13 @@ class Help:
 				with open('commands/' + name.lower() + '.json') as json_data:
 					response_json = json.load(json_data)
 			except FileNotFoundError:
-				await ctx.send(embed = discord.Embed(description = 'Command with that name does not exist.', color = ))
+				await ctx.send(embed = discord.Embed(description = 'Command with that name does not exist.', color = 0xFF0000))
+
+			embed = discord.Embed(title = response_json['title'], description = response_json['description'])
+			embed.add_cog(name = 'Requires Permission', value = response_json['user_perms'], inline = False)
+			embed.add_cog(name = 'Example', value = response_json['example'])
+			embed.set_footer(text = 'Module: ' + response_json['module'])
+			await ctx.send(embed = embed)
 
 
 def setup(bot):
