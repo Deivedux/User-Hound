@@ -1,17 +1,17 @@
 {
 	"token": "",
 	"default_prefix": "-",
-	"response_emotes": {
-		"success_string": "✅",
-		"error_string": "❌"
+	"response_string": {
+		"success": "✅",
+		"error": "❌"
 	},
-	"owners": [],
-	"home_server": 0000,
+	"owner_ids": [],
+	"home_server": 0123,
 	"patreon_reward_roles": {
-		"tier_1": 0000,
-		"tier_2": 0000,
-		"tier_3": 0000,
-		"tier_4": 0000,
-		"tier_5": 0000
+		"tier_1": 1111,
+		"tier_2": 2222,
+		"tier_3": 3333,
+		"tier_4": 4444,
+		"tier_5": 5555
 	}
 }
