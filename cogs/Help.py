@@ -35,7 +35,7 @@ class Help:
 
 			examples = []
 			for i in response_json['examples']:
-				exaples.append('`' + guild_prefix + i + '`')
+				examples.append('`' + guild_prefix + i + '`')
 
 			embed = discord.Embed(title = '`' + guild_prefix + response_json['title'] + '`', description = response_json['description'])
 			embed.add_cog(name = 'Requires Permission', value = response_json['user_perms'], inline = False)
