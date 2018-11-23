@@ -38,8 +38,8 @@ class Help:
 				examples.append('`' + guild_prefix + i + '`')
 
 			embed = discord.Embed(title = '`' + guild_prefix + response_json['title'] + '`', description = response_json['description'])
-			embed.add_cog(name = 'Requires Permission', value = response_json['user_perms'], inline = False)
-			embed.add_cog(name = 'Example', value = ' or '.join(examples))
+			embed.add_field(name = 'Requires Permission', value = response_json['user_perms'], inline = False)
+			embed.add_field(name = 'Example', value = ' or '.join(examples))
 			embed.set_footer(text = 'Module: ' + response_json['module'])
 			await ctx.send(embed = embed)
 
