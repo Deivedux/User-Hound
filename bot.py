@@ -53,8 +53,8 @@ async def on_ready():
 async def on_command(ctx):
 	print()
 	print('Command: ' + ctx.message.content)
-	print('Server: ' + ctx.guild.name + ' (' + str(ctx.guild.id) + ')')
-	print('Channel: ' + ctx.channel.name + ' (' + str(ctx.channel.id) + ')')
+	print('Server: ' + str(ctx.guild) + ' (' + str(ctx.guild.id) + ')')
+	print('Channel: #' + str(ctx.channel) + ' (' + str(ctx.channel.id) + ')')
 	print('User: ' + str(ctx.author) + ' (' + str(ctx.author.id) + ')')
 
 @bot.event

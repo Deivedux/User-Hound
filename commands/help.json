@@ -1,0 +1,7 @@
+{
+	"title": "help",
+	"description": "Shows help message, or command related help.",
+	"user_perms": "None",
+	"examples": ["help", "help mdls"],
+	"module": "Help"
+}

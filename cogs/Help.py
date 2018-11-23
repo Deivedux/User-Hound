@@ -4,7 +4,7 @@ import os
 from discord.ext import commands
 from cogs.Utility import prefix
 
-with open('config/settings.json') as json_data:
+with open('settings.json') as json_data:
 	response_json = json.load(json_data)
 
 default_prefix = response_json['default_prefix']
@@ -33,9 +33,13 @@ class Help:
 			except FileNotFoundError:
 				await ctx.send(embed = discord.Embed(description = 'Command with that name does not exist.', color = 0xFF0000))
 
-			embed = discord.Embed(title = response_json['title'], description = response_json['description'])
+			examples = []
+			for i in response_json['examples']:
+				exaples.append('`' + guild_prefix + i + '`')
+
+			embed = discord.Embed(title = '`' + guild_prefix + response_json['title'] + '`', description = response_json['description'])
 			embed.add_cog(name = 'Requires Permission', value = response_json['user_perms'], inline = False)
-			embed.add_cog(name = 'Example', value = response_json['example'])
+			embed.add_cog(name = 'Example', value = ' or '.join(examples))
 			embed.set_footer(text = 'Module: ' + response_json['module'])
 			await ctx.send(embed = embed)
 
