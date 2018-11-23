@@ -43,6 +43,22 @@ class Help:
 			embed.set_footer(text = 'Module: ' + response_json['module'])
 			await ctx.send(embed = embed)
 
+	@commands.command()
+	async def mdls(self, ctx):
+		try:
+			guild_prefix = prefix[ctx.guild.id]
+		except KeyError:
+			guild_prefix = default_prefix
+
+		await ctx.send(embed = discord.Embed(title = 'Modules', description = '• Help\n• Utility').set_footer(text = 'Type `' + guild_prefix + 'cmds <module>` to see a list of commands in a module.'))
+
+	@commands.command()
+	async def cmds(self, ctx, name):
+		try:
+			guild_prefix = prefix[ctx.guild.id]
+		except KeyError:
+			guild_prefix = default_prefix
+
 
 def setup(bot):
 	bot.add_cog(Help(bot))
