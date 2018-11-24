@@ -26,9 +26,8 @@ class Main:
 		self.bot = bot
 
 	@commands.command()
-	async def lookup(self, ctx, user_id):
+	async def lookup(self, ctx, user_id: int):
 		async with ctx.channel.typing():
-			user_id = int(user_id.replace('<', '').replace('!', '').replace('@', ''). replace('>', ''))
 			user = self.bot.get_user(user_id)
 			if not user:
 				try:
