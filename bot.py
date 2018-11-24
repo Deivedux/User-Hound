@@ -3,12 +3,14 @@ import asyncio
 import json
 import sqlite3
 import os
+import datetime
 from discord.ext import commands
 
 conn = sqlite3.connect('HoundBot.db', detect_types = sqlite3.PARSE_DECLTYPES)
 c = conn.cursor()
-c.execute("CREATE TABLE IF NOT EXISTS Users (User INTEGER unique)")
-c.execute("CREATE TABLE IF NOT EXISTS GuildConfig (Guild INTEGER unique, Prefix TEXT)")
+c.execute("CREATE TABLE IF NOT EXISTS Users (User INTEGER unique, CurrencyTotal INTEGER, CurrencyLastClaim TIMESTAMP)")
+c.execute("CREATE TABLE IF NOT EXISTS UserRatings (User INTEGER, Rating INTEGER, Issuer INTEGER)")
+c.execute("CREATE TABLE IF NOT EXISTS GuildConfig (Guild INTEGER unique, Prefix TEXT, MemberPersistence )")
 
 from cogs.Utility import prefix
 
