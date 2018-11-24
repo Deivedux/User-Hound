@@ -59,6 +59,11 @@ class Help:
 		except KeyError:
 			guild_prefix = default_prefix
 
+		'''
+		Need ideas for this part rather than manually
+		typing out commands for each module.
+		'''
+
 
 def setup(bot):
 	bot.add_cog(Help(bot))
