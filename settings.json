@@ -6,28 +6,5 @@
 		"error": ":x:"
 	},
 	"owner_ids": [],
-	"home_server": 1234,
-	"currency_daily": 100,
-	"patreon_reward_roles": {
-		"tier_1": {
-			"role_id": 1234,
-			"extra_currency": 100
-		},
-		"tier_2": {
-			"role_id": 1234,
-			"extra_currency": 500
-		},
-		"tier_3": {
-			"role_id": 1234,
-			"extra_currency": 1000
-		},
-		"tier_4": {
-			"role_id": 1234,
-			"extra_currency": 2000
-		},
-		"tier_5": {
-			"role_id": 1234,
-			"extra_currency": 5000
-		}
-	}
+	"home_server": 1234
 }
