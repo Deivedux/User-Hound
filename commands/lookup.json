@@ -1,0 +1,7 @@
+{
+	"title": "lookup",
+	"description": "Look up a user by their ID.",
+	"user_perms": "None",
+	"examples": ["lookup 415570038175825930"],
+	"module": "Utility"
+}
