@@ -6,15 +6,15 @@ import os
 import datetime
 from discord.ext import commands
 
-conn = sqlite3.connect('HoundBot.db', detect_types = sqlite3.PARSE_DECLTYPES)
+conn = sqlite3.connect('configs/HoundBot.db', detect_types = sqlite3.PARSE_DECLTYPES)
 c = conn.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS Users (User INTEGER unique, CurrencyTotal INTEGER, CurrencyLastClaim TIMESTAMP)")
 c.execute("CREATE TABLE IF NOT EXISTS UserRatings (User INTEGER, Rating INTEGER, Issuer INTEGER)")
-c.execute("CREATE TABLE IF NOT EXISTS GuildConfig (Guild INTEGER unique, Prefix TEXT, MemberPersistence )")
+c.execute("CREATE TABLE IF NOT EXISTS GuildConfig (Guild INTEGER unique, Prefix TEXT, MemberPersistence INTEGER, ServerLog INTEGER)")
 
 from cogs.Utility import prefix
 
-with open('settings.json') as json_data:
+with open('configs/settings.json') as json_data:
 	response_json = json.load(json_data)
 
 default_prefix = response_json['default_prefix']
@@ -30,7 +30,7 @@ async def get_prefix(bot, message):
 	else:
 		return commands.when_mentioned_or(default_prefix)(bot, message)
 
-bot = commands.Bot(command_prefix = get_prefix, case_insensitive = True, fetch_offline_members = True)
+bot = commands.AutoShardedBot(command_prefix = get_prefix, case_insensitive = True, fetch_offline_members = True)
 bot.remove_command('help')
 
 startup_extensions = ['cogs.Help', 'cogs.Utility']

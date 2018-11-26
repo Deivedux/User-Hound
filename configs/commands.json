@@ -1,0 +1,30 @@
+{
+	"Help": {
+		"help": {
+			"names": [],
+			"description": "",
+			"user_perms": "",
+			"examples": []
+		},
+		"mdls": {
+			"names": [],
+			"description": "",
+			"user_perms": "",
+			"examples": []
+		},
+		"cmds": {
+			"names": [],
+			"description": "",
+			"user_perms": "",
+			"examples": []
+		}
+	},
+	"Utility": {
+		"serverinfo": {
+			"names": [],
+			"description": "",
+			"user_perms": "",
+			"examples": []
+		}
+	}
+}

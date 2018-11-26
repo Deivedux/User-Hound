@@ -1,7 +1,0 @@
-{
-	"title": "mdls",
-	"description": "Shows a list of available modules.",
-	"user_perms": "None",
-	"examples": ["mdls"],
-	"module": "Help"
-}

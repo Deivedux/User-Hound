@@ -4,11 +4,14 @@ import os
 from discord.ext import commands
 from cogs.Utility import prefix
 
-with open('settings.json') as json_data:
+with open('configs/settings.json') as json_data:
 	response_json = json.load(json_data)
 
 default_prefix = response_json['default_prefix']
 del response_json
+
+with open('configs/commands.json') as json_data:
+	commands_json = json.load(json_data)
 
 class Help:
 	def __init__(self, bot):
@@ -26,12 +29,6 @@ class Help:
 			await ctx.send(embed = discord.Embed(title = 'Commands', description = '**Type `' + guild_prefix + 'mdls` to get a list of modules.\nType `' + guild_prefix + 'cmds` to get a list of commands in a module.**'))
 
 		else:
-
-			try:
-				with open('commands/' + name.lower() + '.json') as json_data:
-					response_json = json.load(json_data)
-			except FileNotFoundError:
-				await ctx.send(embed = discord.Embed(description = 'Command with that name does not exist.', color = 0xFF0000))
 
 			examples = []
 			for i in response_json['examples']:

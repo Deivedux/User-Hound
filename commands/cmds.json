@@ -1,7 +1,0 @@
-{
-	"title": "cmds",
-	"description": "Shows a list of available commands in a module.",
-	"user_perms": "None",
-	"examples": ["cmds Help"],
-	"module": "Help"
-}

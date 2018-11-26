@@ -4,7 +4,7 @@ import asyncio
 import json
 from discord.ext import commands
 
-conn = sqlite3.connect('HoundBot.db')
+conn = sqlite3.connect('configs/HoundBot.db')
 c = conn.cursor()
 
 prefix_raw = c.execute("SELECT * FROM GuildConfig").fetchall()
@@ -14,11 +14,11 @@ for i in prefix_raw:
 	prefix[int(i[0])] = i[1]
 del prefix_raw
 
-with open('settings.json') as json_data:
+with open('configs/settings.json') as json_data:
 	response_json = json.load(json_data)
 
 response_success = response_json['response_string']['success']
-response_error = response_json['response_json']['error']
+response_error = response_json['response_string']['error']
 del response_json
 
 class Main:
@@ -26,14 +26,8 @@ class Main:
 		self.bot = bot
 
 	@commands.command()
-	async def lookup(self, ctx, user_id: int):
-		async with ctx.channel.typing():
-			user = self.bot.get_user(user_id)
-			if not user:
-				try:
-					user = await self.bot.get_user_info(user_id)
-				except discord.NotFound:
-					await ctx.send(content = response_error + ' **User with this ID does not exist.**')
+	async def serverinfo(self, ctx):
+		
 
 
 def setup(bot):
