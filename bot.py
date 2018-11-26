@@ -11,6 +11,7 @@ c = conn.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS Users (User INTEGER unique, CurrencyTotal INTEGER, CurrencyLastClaim TIMESTAMP)")
 c.execute("CREATE TABLE IF NOT EXISTS UserRatings (User INTEGER, Rating INTEGER, Issuer INTEGER)")
 c.execute("CREATE TABLE IF NOT EXISTS GuildConfig (Guild INTEGER unique, Prefix TEXT, MemberPersistence INTEGER, ServerLog INTEGER)")
+c.execute("CREATE TABLE IF NOT EXISTS PersistedUsers (User INTEGER, Guild INTEGER, Roles TEXT, Nick TEXT)")
 
 from cogs.Utility import prefix
 
