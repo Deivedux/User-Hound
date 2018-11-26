@@ -30,11 +30,26 @@ class Help:
 
 		else:
 
+			command = None
+			for i in commands_json:
+				try:
+					command = name
+					break
+				except KeyError:
+					continue
+
+			if command == None:
+				return await ctx.send(embed = discord.Embed(description = 'A command with that name does not exist.', color = 0xFF0000))
+
+			command_name = []
+			for i in command['names']:
+				command_name.append('`' + guild_prefix + i + '`')
+
 			examples = []
-			for i in response_json['examples']:
+			for i in command['examples']:
 				examples.append('`' + guild_prefix + i + '`')
 
-			embed = discord.Embed(title = '`' + guild_prefix + response_json['title'] + '`', description = response_json['description'])
+			embed = discord.Embed(title = command_name, description = response_json['description'])
 			embed.add_field(name = 'Requires Permission', value = response_json['user_perms'], inline = False)
 			embed.add_field(name = 'Example', value = ' or '.join(examples))
 			embed.set_footer(text = 'Module: ' + response_json['module'])
